@@ -1,0 +1,124 @@
+{% extends 'publicsection/indexBase.html' %}
+{% load static %}
+{% block title %}Newsletter{% endblock %}
+
+{% block description %}Subscribe to the CoinLauncher newsletter and stay updated from popular coin presales and other important news.{% endblock %}
+{% block keywords %}CoinLauncher newsletter{% endblock %}
+{% block author %}CoinLauncher{% endblock %}
+{% block robots %}index, follow{% endblock %}
+
+{% block ogtitle %}Newsletter{% endblock %}
+{% block ogdescription %}Subscribe to the CoinLauncher newsletter and stay updated from popular coin presales and other important news.{% endblock %}
+{% block ogurl %}https://coinlauncher.net/newsletter/{% endblock %}
+{% block ogimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block twittertitle %}Newsletter{% endblock %}
+{% block twitterdescription %}Subscribe to the CoinLauncher newsletter and stay updated from popular coin presales and other important news.{% endblock %}
+{% block twitterimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block pageurl %}https://coinlauncher.net/newsletter/{% endblock %}
+
+{% block externalFiles %}
+{% endblock %}
+{% block internalCSS %}
+    <style>
+        .headerContainer{
+            margin-top: 110px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .headerContainer img{
+            height: 60px;
+            width: 220px;
+            margin-bottom: 15px;
+        }
+        .headerContainer h2{
+            font-size: 34px;
+            font-weight: 500;
+            color: #333;
+        }
+        .headerContainer p{
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: grey;
+        }
+        .formDiv{
+            padding: 20px;
+            border: 1px solid gainsboro;
+            width: 60%;
+            margin-left: 20%;
+            background-color: white;
+            text-align: center;
+            border-radius: 6px;
+        }
+
+        .formDiv img{
+            margin-bottom: 30px;
+        }
+
+       .formDiv p{
+            font-size: 14px;
+            font-weight: 400;
+            color: grey;
+           text-align: left;
+           width: 70%;
+       }
+      .formDiv input:focus{
+          box-shadow: none;
+          border: 1px solid #df1717;
+      }
+        .formDiv button{
+          color: white;
+            background-color: #df1717;
+      }
+    .formDiv button:hover{
+        color: white;
+        opacity: 0.8;
+    }
+
+    @media only screen and (max-width: 700px) {
+        .formDiv{
+            width: 90%;
+            margin-left: 5%;
+        }
+        .headerContainer h2{
+            font-size: 28px;
+        }
+        .headerContainer p{
+            font-size: 12px;
+        }
+        .formDiv p{
+            width: 100%;
+        }
+    }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container headerContainer">
+        <img src="{% static 'images/logo.png' %}" alt="Newsletter">
+        <h2>Subscribe to our newsletter</h2>
+        <p>Get the news about the high potential coins</p>
+    </div>
+
+    <div class="container formContainer">
+        <div class="formDiv">
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ message }}
+              <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+            </div>
+        {% endfor %}
+            <img src="{% static 'images/maillogo.PNG' %}" alt="Mail">
+            <p>The best way to stay informed about the newest crypto coins!
+Don't miss get news and updates, right to your inbox!</p>
+            <form class="d-flex" method="post" action="{% url 'NewsletterView' %}">
+                {% csrf_token %}
+                <input name="email" class="form-control me-2" type="email" placeholder="Enter email" required>
+                <button class="btn" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

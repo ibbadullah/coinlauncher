@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="icon/png" href="{% static 'images/logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/darktheme.css' %}" id="myStyleSheet">
+    {% block externalFiles %}{% endblock %}
+    {% block internalCSS %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+
+<div class="navBarBg">
+
+        <div class="mobileNav">
+            <a href="{% url 'IndexView' %}" class="mobileLogoLink"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+
+            <div class="mobileSignupProfile">
+                {% if request.user.is_authenticated %}
+                    <div class="mobileProfileCircle" id="mProfileIcon">{{ request.user.fullname.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mobileMenuIcon" id="mMenuIcon">
+                <i class="fa fa-bars" id="menuOpenIcon"></i>
+            </div>
+
+            <div class="darkModeDiv">
+                <div>
+                    <div class="form-check form-switch" style="margin-top: 22px">
+                        <input onclick="darkMode()" class="form-check-input uncheckDarkModeToggle" type="checkbox">
+                        <input onclick="lightMode()" class="form-check-input darkModeToggle" style="display: none"  type="checkbox" checked>
+                    </div>
+                </div>
+            </div>
+
+
+             <!--Profile modal for menus-->
+            <div class="profileModel" id="mMenuModal" style="display: none">
+                <i class="fa fa-times mobileDialogCloseBtn"></i>
+                <div class="modalBody">
+                    <a href="{% url 'UserDashboard' %}" style="margin-top: 15px;text-align: center;margin-left: 0px">DASHBOARD</a>
+                    <a href="{% url 'UserAddCoinView' %}" style="margin-top: 15px;text-align: center;margin-left: 0px">ADD COIN</a>
+                    <a href="{% url 'UserUpdateProfileView' %}" style="margin-bottom: 15px;margin-top: 15px;text-align: center;margin-left: 0px">UPDATE PROFILE</a>
+                </div>
+            </div>
+
+
+
+
+        <!--Profile modal for dashboard-->
+            <div class="profileModel" id="mProfileModal">
+                <div class="modalHeader">
+                    <div class="modalProfileCircle">{{ request.user.fullname.0 }}</div>
+                    <h4>{{ request.user.fullname }}</h4>
+                    <p>{{ request.user.email }}</p>
+                </div>
+                <i class="fa fa-times mobileDialogCloseBtn"></i>
+                <div class="modalBody">
+                    <a href="{% url 'UserDashboard' %}" style="margin-top: 15px"><i class="fa fa-user"></i>&nbsp;&nbsp;Dashboard</a>
+                    <hr>
+                    <a href="{% url 'LogoutView' %}" style="margin-bottom: 15px"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</a>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <!--Desktop screen menu-->
+        <div class="navBar">
+            <a href="{% url 'IndexView' %}" class="logoLink"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+            <div class="menuLinks">
+                <a href="{% url 'UserDashboard' %}">Dashboard</a>
+                <a href="{% url 'UserAddCoinView' %}">Add coin</a>
+                <a href="{% url 'UserUpdateProfileView' %}">Update Profile</a>
+            </div>
+
+
+            <div class="darkModeDiv">
+                <div>
+                    <div class="form-check form-switch" style="margin-top: 22px">
+                        <input onclick="darkMode()" class="form-check-input uncheckDarkModeToggle" type="checkbox">
+                        <input onclick="lightMode()" class="form-check-input darkModeToggle" style="display: none"  type="checkbox" checked>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="login-Profile">
+
+                {% if request.user.is_authenticated %}
+                    <div class="profileDiv" id="dProfileIcon">
+                        <div class="profileCircle">{{ request.user.fullname.0 }}</div>
+                        <span class="message">Hello,</span>
+                        <p>{{ request.user.fullname }}&nbsp;<i class="fa fa-angle-down"></i></p>
+
+
+                        <div class="profileModel" id="dProfileModal">
+                            <div class="modalHeader">
+                                <div class="modalProfileCircle">{{ request.user.fullname.0 }}</div>
+                                <h4>{{ request.user.fullname }}</h4>
+                                <p>{{ request.user.email }}</p>
+                            </div>
+                            <div class="modalBody">
+                                <a href="{% url 'UserDashboard' %}" style="margin-top: 15px"><i class="fa fa-user"></i>&nbsp;&nbsp;Dashboard</a>
+                                <hr>
+                                <a href="{% url 'LogoutView' %}" style="margin-bottom: 15px"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--Content div-->
+    <div class="bodycontent" style="margin-bottom: 30px">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+    <!--Footer-->
+    <footer class="footerDiv mt-auto">
+        <p>&copy; {% now "Y" %} <a href="https://coinlauncher.net">coinlauncher.net</a> | Developed & designed by <a href="https://20services.com">20services.com</a></p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/indexBase.js' %}"></script>
+
+
+    <script>
+        // dark mode stuff
+        var lightTheme = "{% static 'css/indexBase.css' %}";
+        var darkTheme = "{% static 'css/darktheme.css' %}";
+        var setTheme = localStorage.getItem('theme');
+
+        if(setTheme==null){
+            $('.uncheckDarkModeToggle').hide();
+            $('.darkModeToggle').show();
+        }
+        else {
+            if(setTheme == "/static/css/darktheme.css"){
+                $('.uncheckDarkModeToggle').hide();
+                $('.darkModeToggle').show();
+                swapStyle(setTheme);
+            }
+            else {
+                $('.uncheckDarkModeToggle').show();
+                $('.darkModeToggle').hide();
+                swapStyle(setTheme);
+            }
+        }
+
+        function swapStyle(style) {
+            document.getElementById('myStyleSheet').href = style;
+            localStorage.setItem('theme',style);
+        }
+
+
+        function darkMode() {
+            if($('.uncheckDarkModeToggle').prop('checked',false)) {
+                $('.uncheckDarkModeToggle').hide();
+                $('.darkModeToggle').show();
+                swapStyle(darkTheme);
+            }
+        }
+
+        function lightMode() {
+            if($('.darkModeToggle').prop('checked',true)){
+                $('.uncheckDarkModeToggle').show();
+                $('.darkModeToggle').hide();
+                swapStyle(lightTheme);
+            }
+        }
+
+
+
+    </script>
+
+
+    {% block js %}{% endblock %}
+
+
+</body>
+</html>
+

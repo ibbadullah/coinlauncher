@@ -1,0 +1,252 @@
+{% extends 'publicsection/indexBase.html' %}
+{% load static %}
+{% load filters %}
+{% block title %}Promotion Coin{% endblock %}
+
+{% block description %}Promote your coin on CoinLauncher. You can easily do promotion coin on CoinLauncher by just sending an email.{% endblock %}
+{% block keywords %}CoinLauncher newsletter{% endblock %}
+{% block author %}CoinLauncher{% endblock %}
+{% block robots %}index, follow{% endblock %}
+
+{% block ogtitle %}Promotion Coin{% endblock %}
+{% block ogdescription %}Promote your coin on CoinLauncher. You can easily do promotion coin on CoinLauncher by just sending an email.{% endblock %}
+{% block ogurl %}https://coinlauncher.net/promotion-coin/{% endblock %}
+{% block ogimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block twittertitle %}Promotion Coin{% endblock %}
+{% block twitterdescription %}Promote your coin on CoinLauncher. You can easily do promotion coin on CoinLauncher by just sending an email.{% endblock %}
+{% block twitterimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block pageurl %}https://coinlauncher.net/promotion-coin/{% endblock %}
+
+{% block externalFiles %}
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+{% endblock %}
+{% block internalCSS %}
+    <style>
+
+    .promoteHeadingContainer{
+        margin-top: 100px;
+        text-align: center;
+    }
+    .promoteHeadingContainer img{
+        height: 60px;
+        width: 220px;
+        margin-bottom: 15px;
+
+    }
+    .promoteHeadingContainer h2{
+        color: #333;
+        font-size: 34px;
+    }
+    .promoteHeadingContainer h4{
+        color: #333;
+        font-size: 17px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .promoteHeadingContainer p{
+        text-align: center;
+        font-size: 15px;
+        text-transform: unset;
+        font-weight: 300;
+        color: grey;
+    }
+    .messageBar{
+        background-color: #df1717;
+        color: white;
+        padding: 22px 0px 22px 0px;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .messageBar p{
+        font-size: 17.5px;
+        color: white;
+        font-weight: 500;
+        margin-left: 7px;
+        margin-right: 7px;
+        text-transform: unset;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .filter{
+        float: right;
+    }
+    .filter h4{
+        color: #df1717;
+        font-size: 20px;
+    }
+
+    /*Targeting mobile screens*/
+    @media only screen and (max-width: 700px){
+        .filter{
+            float: left;
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+
+
+      /* Alert Stuff */
+
+    .successAlertBg{
+        width: 100%;
+        height: 100vh;
+        z-index: 900;
+        background-color: rgba(22,22,32,0.4);
+        position: fixed;
+        display: none;
+    }
+    .successAlert{
+        padding: 15px 25px 15px 25px;
+        background-color: green;
+        position: absolute;
+        right: 10px;
+        border-radius: 5px;
+        top: 30px;
+    }
+    .successAlert p{
+        color: white;
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+
+    <!--Alert box-->
+     <div class="successAlertBg">
+        <div class="successAlert">
+            <p>Your vote was submitted!</p>
+        </div>
+    </div>
+
+<div class="container promoteHeadingContainer">
+    <img src="{% static 'images/logo.png' %}" alt="Promote coins">
+    <h2>Promote your coin!</h2>
+    <h4>GET THE VISIBILITY YOU NEED.</h4>
+    <p>By promoting on coinlauncher.net, your coin will be visible on top of all other coins.</p>
+
+    <div class="messageBar">
+        <p><i class="fa fa-info"></i>&nbsp;&nbsp;Do never pay anyone for a promotion on our platform, unless you have received a confirmation email from office@coinlauncher.net.</p>
+    </div>
+</div>
+
+
+
+ <div class="container tableTitleContainer" style="margin-top: 50px; position: relative">
+        <div  style="display: inline-block;float: left;">
+            <h2>💎 Promoted Coins</h2>
+            <p>Even though promoted, trying to choose quality projects only.</p>
+        </div>
+
+        <div class="filter">
+           <h4>Token in PRESALE?</h4>
+            <div>
+                <div style="float: right;font-weight: 500;font-size: 18px;color: #df1717">NO</div>
+                <div class="form-check form-switch" style="float: right;margin-right: 5px">
+                    <input onclick="doTask()" class="form-check-input presaleFilter" type="checkbox" checked>
+                </div>
+                <div style="float: right;font-weight: 500;font-size: 18px;color: green;margin-right: 10px;">YES</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container tableContainer">
+        <table>
+            <tr class="tableHeading">
+                <th></th>
+                <th class="tablePriceHeading"></th>
+                <th class="tableMarketHeading"></th>
+                <th class="tableAgeHeading">AGE</th>
+                <th>VOTES</th>
+            </tr>
+
+
+            {% for c in PCoins %}
+                <tr class="dataRow NotSale">
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">
+                        <img style="border-radius: 50%" class="coinImage" src="{{ c.token_logo_link }}" alt="Coin log">
+                        <span class="coinName">{{ c.token_name }}<br>
+                            <span class="coinType">${{ c.token_symbol }}</span><br>
+                            {% if c.presale == 'Yes' %}
+                                <span class="coinLabel" style="display: none">PRESALE</span>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td class="dataTd tablePrice"></td>
+                    <td class="dataTd tableMarketCap"></td>
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')" class="dataTd tableAge">{{ c.timeStamp }}</td>
+                    <td class="tableButton">
+                        {% if request|checkUserVoteF:c.id %}
+                            <button style="color: #d6c9cc;border-color: #dba9b4" class="btn btn-outline-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                        {% else %}
+                            <button id="voteBtn{{ c.id }}" type="button" class="btn btn-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                            <button style="display: none;color: #d6c9cc;border-color: #dba9b4" id="submittedVoteBtn{{ c.id }}" type="button" class="btn btn-danger"></button>
+                        {% endif %}
+                    </td>
+                     <script>
+
+                    $(document).ready(function () {
+                        $('#voteBtn{{ c.id }}').click(function () {
+                            $('#voteBtn{{ c.id }}').css({"display":"none"});
+                            $('#submittedVoteBtn{{ c.id }}').css({"display":"inline-block"});
+                            $('.successAlertBg').css('display','block');
+                            var totalVotes = {{ c.id|totalVotes }} + 1;
+                            $('#submittedVoteBtn{{ c.id }}').html('🚀&nbsp;'+totalVotes);
+
+                            var data = {"id":{{ c.id }}};
+                            $.ajax({
+                                url: "{% url 'SubmitVoteUser' c.id %}",
+                                method: "GET",
+                                data: data,
+                                success : function (data) {
+                                    setTimeout(e=>{
+                                        $('.successAlertBg').css('display','none');
+                                    },2000);
+                                    console.log("Vote submitted!");
+                                },
+                            });
+                        });
+                    });
+                </script>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+    <div class="promotionInfo" style="text-align: center;margin-top: 20px;color: #333">
+            <h5>TO PROMOTE YOUR COINS!</h5>
+            <p>Mail to <a style="text-decoration: none;color: #333" href="mailto:office@coinlancher.io">office@coinlauncher.net</a></p>
+    </div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        function doTask() {
+            var khan = $("input.presaleFilter:checkbox:not(:checked)").val();
+            if(khan){
+                $('.coinLabel').css({"display":"inline"});
+            }
+            else {
+                 $('.coinLabel').css({"display":"none"});
+            }
+        }
+
+        setTimeout(e=>{
+            $('.successAlertBg').css('display','none');
+        },2000);
+
+    </script>
+{% endblock %}
+
+

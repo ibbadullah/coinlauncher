@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block description %}Login into your CoinLauncher account. If you don't have an account you can open a new account.{% endblock %}
+{% block keywords %}CoinLauncher Login{% endblock %}
+{% block author %}CoinLauncher{% endblock %}
+{% block robots %}index, follow{% endblock %}
+
+{% block ogtitle %}Login{% endblock %}
+{% block ogdescription %}Login into your CoinLauncher account. If you don't have an account you can open a new account.{% endblock %}
+{% block ogurl %}https://coinlauncher.net/login/{% endblock %}
+{% block ogimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block twittertitle %}Login{% endblock %}
+{% block twitterdescription %}Login into your CoinLauncher account. If you don't have an account you can open a new account.{% endblock %}
+{% block twitterimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block pageurl %}https://coinlauncher.net/login/{% endblock %}
+
+{% block externalFiles %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
+
+{% block internalCSS %}
+    <style>
+
+
+    </style>
+{% endblock %}
+
+
+{% block content%}
+    <div class="row">
+    <div class="infoDiv"><i class="fa fa-info"></i></div>
+        <div class="leftDiv">
+
+
+            <div class="form-div">
+                <a href="#"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+                <br><br><br>
+                <h4 style="font-size: 22px">Login</h4>
+                <p style="font-size: 15px!important;">Login into your account</p>
+                {% for message in messages %}
+                    <div class="alert {{ alert }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+                    </div>
+                {% endfor %}
+                <form action="{% url 'LoginView' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter your email" id="email">
+                    </div><br>
+                    <div class="form-group">
+                        <label for="pass">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter your password" id="pass">
+                    </div><br>
+                    <button type="submit" class="btn form-control">Login</button>
+                </form><br>
+                <h5>Don't have an account? <a href="{% url 'SignupView' %}">Create an account</a> or <a href="{% url 'reset_password' %}">Forgot password</a></h5>
+            </div>
+        </div>
+
+
+        <div class="rightDiv">
+            <div class="logo-div">
+                <img src="{% static 'images/logo.png' %}" alt="Logo"><br><br>
+                <h4 class="text-center">List your coin & vote your coin</h4>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/forms.js' %}"></script>
+{% endblock %}

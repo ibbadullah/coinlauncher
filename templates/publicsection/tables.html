@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Coins Website{% endblock %}
+{% block internalCSS %}
+    <style>
+
+    body{
+        background-color: #f0f0f0;
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+    }
+    .tableTitleContainer h2{
+        font-size: 26px;
+        color: #333;
+    }
+    .tableTitleContainer p{
+        font-size: 14px;
+        font-weight: 300;
+    }
+    .tableContainer{
+         border-radius: 10px!important;
+        overflow: hidden;
+        -webkit-box-shadow: 0px 1px 10px -1px rgba(0,0,0,0.37);
+        -moz-box-shadow: 0px 1px 10px -1px rgba(0,0,0,0.37);
+        box-shadow: 0px 1px 10px -1px rgba(0,0,0,0.37);
+        padding: 0px;
+    }
+    table {
+        display: table;
+        border-collapse: collapse;
+        border-color: grey;
+        width: 100%;
+        background-color:white;
+        /*#f4fbf68*/
+    }
+    .tableHeading{
+        background-color: #d8d8d8;
+        border: none;
+    }
+    .tableHeading th{
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500!important;
+        line-height: 30px;
+    }
+    .dataRow{
+        border-bottom: 1px solid gainsboro;
+    }
+    .dataTd{
+        text-align: center;
+        font-size: 15px;
+        font-weight: 400;
+    }
+    .tableButton{
+        text-align: center;
+    }
+    .dataRow:hover{
+        background-color: lightgray;
+        cursor: pointer;
+    }
+    .coinImage{
+        width: 40px;
+        height: 40px;
+        margin-left: 20px;
+        margin-top: 12px;
+        float: left;
+    }
+    .coinName{
+        font-size: 16px;
+        font-weight: 300;
+        margin-left: 10px;
+        margin-top: 8px !important;
+        display: block;
+        float: left;
+        line-height: 20px;
+        margin-bottom: 12px;
+
+    }
+    .coinType{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    .coinLabel{
+        font-size: 11px;
+        font-weight: 400;
+        padding: 1px 12px 1px 12px;
+        border-radius: 24px;
+        background-color: #df1717;
+        color: white;
+    }
+    .tableButton button{
+        background-color: white;
+        color: #df1717;
+        border: 1px solid #df1717;
+    }
+    .tableButton button:hover{
+        background-color: #df1717;
+        color: white;
+        transition: 0.5s;
+    }
+
+    @media only screen and (max-width: 900px) {
+        .tableTitleContainer{
+            width: 90%;
+            margin-left: 5%;
+        }
+        .tableContainer{
+            width: 90%;
+            margin-left: 5%;
+        }
+        .tablePriceHeading{
+            display: none;
+        }
+        .tableMarketHeading{
+            display: none;
+        }
+        .tableAgeHeading{
+            display: none;
+        }
+        .dataTd{
+            display: none;
+        }
+    }
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <br><br>
+    <div class="container tableTitleContainer">
+        <h2>💎 Promoted Coins</h2>
+        <p>Even though promoted, trying to choose quality projects only.</p>
+    </div>
+    <div class="container tableContainer">
+        <table>
+            <tr class="tableHeading">
+                <th></th>
+                <th class="tablePriceHeading">PRICE</th>
+                <th class="tableMarketHeading">MARKET CAP</th>
+                <th class="tableAgeHeading">AGE</th>
+                <th>VOTES</th>
+            </tr>
+
+            <tr class="dataRow">
+                <td>
+                    <img class="coinImage" src="https://i.imgur.com/mqeZObY.png" alt="Coin log">
+                    <span class="coinName">KhanCoin sdfsdfsd<br>
+                        <span class="coinType">$FLUR sdfdsfs</span>
+                    </span>
+                </td>
+                <td class="dataTd tablePrice">0.000173276</td>
+                <td class="dataTd tableMarketCap">330,724</td>
+                <td class="dataTd tableAge">1 day ago</td>
+                <td class="tableButton"><button class="btn">🚀 &nbsp;33434</button></td>
+            </tr>
+
+
+            <tr class="dataRow">
+                <td>
+                    <img class="coinImage" src="https://i.imgur.com/mqeZObY.png" alt="Coin log">
+                    <span class="coinName">KhanCoin<br>
+                        <span class="coinType">$FLUR</span><br>
+                        <span class="coinLabel">BUY ON KHAN</span>
+                    </span>
+                </td>
+                <td class="dataTd tablePrice">0.000173276</td>
+                <td class="dataTd tableMarketCap">330,724</td>
+                <td class="dataTd tableAge">1 day ago</td>
+                <td class="tableButton"><button class="btn">🚀 &nbsp;33434</button></td>
+            </tr>
+
+
+            <tr class="dataRow">
+                <td>
+                    <img class="coinImage" src="https://i.imgur.com/mqeZObY.png" alt="Coin log">
+                    <span class="coinName">KhanCoin<br>
+                        <span class="coinType">$FLUR</span><br>
+                        <span class="coinLabel">BUY ON KHAN</span>
+                    </span>
+                </td>
+                <td class="dataTd tablePrice">0.000173276</td>
+                <td class="dataTd tableMarketCap">330,724</td>
+                <td class="dataTd tableAge">1 day ago</td>
+                <td class="tableButton"><button class="btn">🚀 &nbsp;33434</button></td>
+            </tr>
+
+
+            <tr class="dataRow">
+                <td>
+                    <img class="coinImage" src="https://i.imgur.com/mqeZObY.png" alt="Coin log">
+                    <span class="coinName">KhanCoin sdfdf dsfsdf<br>
+                        <span class="coinType">$FLUR dsfdfdssdfsdf</span><br>
+                        <span class="coinLabel">BUY ON KHAN sdfdf</span>
+                    </span>
+                </td>
+                <td class="dataTd tablePrice">0.000173276</td>
+                <td class="dataTd tableMarketCap">330,724</td>
+                <td class="dataTd tableAge">1 day ago</td>
+                <td class="tableButton"><button class="btn btn-danger">🚀 &nbsp;33434</button></td>
+            </tr>
+
+        </table>
+    </div>
+
+{% endblock %}

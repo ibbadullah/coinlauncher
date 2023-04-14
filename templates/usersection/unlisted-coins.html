@@ -1,0 +1,85 @@
+{% extends 'usersection/indexBase.html' %}
+{% load static %}
+{% block title %}Declined Coins{% endblock %}
+{% block externalFiles %}
+    <link rel="stylesheet" href="{% static 'css/coinCards.css' %}">
+{% endblock %}
+
+{% block internalCSS %}
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="container sectionTitleContainer" style="margin-top: 100px">
+        <button style="float: right" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#filterModal">
+          <i class="fa fa-filter"></i>&nbsp;Filter by
+        </button>
+        <h2>Your Declined Coins</h2>
+        <p>You have {{ Coins.count }} declined coin's.</p>
+    </div>
+
+    <div class="container coinsContainer">
+
+        {% for d in Coins %}
+            <div class="coinCards">
+                <div class="coinImageLink">
+                    <table>
+                       <tr>
+                           <td>
+                               <img class="coinImageC" src="{{ d.token_logo_link }}" alt="Coin Image">
+                           </td>
+                           <td>
+                               <div style="margin-left: 10px;word-break: break-all">
+                                    <a href="#" class="coinLinkOne">{{ d.smart_chain_address }}</a><br>
+                                    <a href="#" class="coinLinkTwo">{{ d.ethereum_address }}</a>
+                               </div>
+                           </td>
+                       </tr>
+                    </table>
+                    <p class="coinDescrption">{{ d.token_description }}</p>
+                    <p><span class="coinBadge">{{ d.coin_status }}</span></p>
+                    <br>
+                    <div class="approvalMessaageDiv">
+                        <i class="fa fa-info"></i>
+                        <p>
+                            {% if d.coin_status == 'Listed' %}
+                                Your coin is listed on the site. You can find it on the main page of the website.
+                            {% elif d.coin_status == 'Un-listed' %}
+                                Your coin is now un-listed. You can't find it on the main page of the website. Please contact with support team.
+                            {% elif d.coin_status == 'Pending' %}
+                                Your coin is in the pending. Once CoinLauncher team approved then it will be live on the site.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+
+    </div>
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="filterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="filterModalLabel">Filter By</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <a href="{% url 'UserDashboard' %}" class="modalLinkButton">All</a>
+          <a href="{% url 'UserPendingCoins' %}" class="modalLinkButton">Pending</a>
+          <a href="{% url 'UserPostedCoins' %}" class="modalLinkButton">Posted</a>
+          <a href="{% url 'UserUnlistedCoins' %}" class="modalLinkButton">Declined</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

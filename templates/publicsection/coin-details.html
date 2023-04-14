@@ -1,0 +1,496 @@
+{% extends 'publicsection/indexBase.html' %}
+{% load static %}
+{% block title %}{% if 'coin' or 'Coin' in Coin.token_name %}{{ Coin.token_name }} Voting{% else %}{{ Coin.token_name }} Coin Voting{% endif %}{% endblock %}
+
+
+{% block description %}{{ Coin.token_description }}{% endblock %}
+{% block keywords %}{% if 'coin' in Coin.token_name|lower %}{{ Coin.token_name|lower }} voting{% else %}{{ Coin.token_name|lower }} coin voting{% endif %}{% endblock %}
+{% block author %}CoinLauncher{% endblock %}
+{% block robots %}index, follow{% endblock %}
+
+{% block ogtitle %}{% if 'coin' or 'Coin' in Coin.token_name %}{{ Coin.token_name }} Voting{% else %}{{ Coin.token_name }} Coin Voting{% endif %}{% endblock %}
+{% block ogdescription %}{{ Coin.token_description }}{% endblock %}
+{% block ogurl %}https://coinlauncher.net/coin/{{ Coin.coin_slug }}/{% endblock %}
+{% block ogimage %}{{ Coin.coin_logo_link }}{% endblock %}
+
+{% block twittertitle %}{% if 'coin' or 'Coin' in Coin.token_name %}{{ Coin.token_name }} Voting{% else %}{{ Coin.token_name }} Coin Voting{% endif %}{% endblock %}
+{% block twitterdescription %}{{ Coin.token_description }}{% endblock %}
+{% block twitterimage %}{{ Coin.coin_logo_link }}{% endblock %}
+
+{% block pageurl %}https://coinlauncher.net/coin/{{ Coin.coin_slug }}/{% endblock %}
+
+{% block externalFiles %}
+
+{% endblock %}
+{% block internalCSS %}
+    <style>
+
+    .navBarBg{
+        z-index: 99;
+    }
+    .headerContainer{
+        margin-top: 100px;
+        margin-bottom: 20px;
+    }
+    .headerContainer a{
+        text-decoration: none;
+        color: grey;
+        text-align: left;
+        font-size: 20px;
+    }
+    .animatedDiv{
+        background-color: #fceceb;
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #df1717;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        -webkit-animation: zoomeffect 1s infinite;
+       -moz-animation: zoomeffect 1s infinite;
+       animation: zoomeffect 1s infinite;
+        z-index: -90;
+        color: #df1717;
+    }
+    .animatedDiv:hover{
+        background-color: #df1717;
+        color: white !important;
+        cursor: pointer;
+    }
+    .votedDiv{
+        background-color: #fceceb;
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #df1717;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        z-index: -90;
+        color: #df1717;
+        opacity: 0.6;
+    }
+    .votedDiv p{
+        line-height: 20px;
+        margin: 0px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    @-webkit-keyframes zoomeffect{
+		0%{
+			background-position:center;
+		  transform:scale(1,1);
+		}
+		50%{
+			background-position:center;
+		  transform:scale(1.05,1.05);
+		}
+		100%{
+			background-position:center;
+		  transform:scale(1,1);
+		}
+}
+
+    @keyframes zoomeffect{
+		0%{
+			background-position:center;
+		  transform:scale(1,1);
+		}
+		50%{
+			background-position:center;
+		  transform:scale(1.05,1.05);
+		}
+		100%{
+			background-position:center;
+		  transform:scale(1,1);
+		}
+}
+
+    .animatedDiv p{
+
+        line-height: 20px;
+        margin: 0px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .animatedDiv .voteForTotal{
+        float: right;
+    }
+    .cardShadow{
+        padding: 15px 20px 15px 20px;
+        width: 100%;
+        border-radius: 6px;
+        background-color: white;
+        -webkit-box-shadow: 0px 1px 10px -1px rgba(0,0,0,0.37);
+        -moz-box-shadow: 0px 1px 10px -1px rgba(0,0,0,0.37);
+        box-shadow: 0px 1px 10px -1px rgba(0,0,0,0.37);
+        margin-bottom: 15px;
+    }
+    .coinNameAndBoi{
+        display: block;
+        width: 100%;
+        height: 100px;
+        padding: 0px;
+    }
+
+    .coinNameAndBoi img{
+        width: 80px;
+        height: 80px;
+        float: left;
+    }
+    .titleBoi{
+        float: left;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    .coinNameAndBoi h2{
+        color: #333;
+        font-size: 24px;
+        font-weight: 400;
+    }
+    .coinNameAndBoi p{
+        color: grey;
+        font-size: 14px;
+    }
+    .coinNameAndBoi .coinLabel{
+        padding: 4px 8px 4px 8px;
+        border:1px solid grey;
+        background-color: midnightblue;
+        color: white;
+        font-weight: 500;
+        font-size: 15px;
+    }
+    .coinQuesetion{
+        display: block;
+        width: 100%;
+    }
+    .coinQuesetion h4{
+        color: grey;
+        font-size: 15px;
+        font-weight: 400;
+    }
+    .coinQuesetion p{
+        color: #333;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .coinCopyLink input{
+        background-color: #f5f6fa!important;
+        color: grey;
+        font-size: 14px;
+    }
+    .coinCopyLink input:focus{
+        box-shadow: none;
+        border: 1px solid #df1717;
+    }
+    .coinCopyLink button{
+        color: #df1717;
+    }
+    .coinCopyLink button:focus{
+        color: #df1717;
+        box-shadow: none;
+        border: 1px solid #df1717;
+    }
+
+    .cardExtra p{
+        font-size: 14px;
+        color: grey;
+        font-weight: 400;
+        margin: 0px;
+    }
+
+    .cardExtra h3{
+        font-size: 22px;
+        color: darkslategrey;
+        font-weight: 500;
+        margin: 0px 0px 5px 0px;
+    }
+    .cardExtra .btn{
+        width: 100%;
+        background-color: #df1717;
+        color: white;
+        margin-bottom: 10px;
+        text-align:left;
+        font-weight: 500;
+    }
+    .cardExtra .btn i{
+        color: white;
+        margin-left: 3px;
+    }
+    .cardExtra .btn:hover{
+        opacity: 0.8;
+    }
+    .cardExtra textarea:focus{
+        box-shadow: none;
+        border: 1px solid #df1717;
+    }
+
+    .addvertisementCard{
+        padding: 0px;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .addvertisementCard img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+
+    .impUserBg{
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid gainsboro;
+        margin-bottom: 20px;
+    }
+    .improfileBg{
+        float: left;
+    }
+    .impuserDetaisBg{
+        float: left;
+        margin-left: 20px;
+    }
+    .impUserProfile{
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: #999999;
+        font-size: 19px;
+        font-weight: 500;
+        text-align: center;
+        line-height: 45px;
+
+    }
+    .impUserDetails h4{
+        margin-bottom: 0px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .impUserDetails p{
+        margin-bottom: 0px;
+        font-size: 14px;
+        color: #333;
+        margin-top: 5px;
+    }
+
+
+    .changeBtn{
+        background-color: #df1717;
+        color: white!important;
+        border-style: none;
+        border-radius: 5px;
+    }
+
+    /*Success alert*/
+    .successAlertBg{
+        width: 100%;
+        height: 100vh;
+        z-index: 900;
+        background-color: rgba(22,22,32,0.4);
+        position: absolute;
+        display: none;
+    }
+    .successAlert{
+        padding: 15px 25px 15px 25px;
+        background-color: green;
+        position: absolute;
+        right: 10px;
+        border-radius: 5px;
+        top: 30px;
+    }
+    .successAlert p{
+        color: white;
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <div class="successAlertBg" style="display: {{ display }}">
+        <div class="successAlert">
+            <p>{{ Coin.token_name }} was successfully voted!</p>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(e=>{
+            $('.successAlertBg').css('display','none');
+        },3000);
+    </script>
+
+
+
+    <div class="container headerContainer">
+        <a href="{% url 'IndexView' %}"><i class="fa fa-arrow-left"></i>&nbsp;Back to home</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+
+            {% if IpVote == 0 %}
+                <a href="{% url 'SubmitVoteUser' Coin.id %}" style="text-decoration: none">
+                    <div class="animatedDiv">
+                        <p>
+                            <span class="voteFor">
+                                Vote for {{ Coin.token_name }}&nbsp; 🚀
+                            </span>
+                            <span class="voteForTotal">
+                                {{ TotalSingleCoinVotes }}
+                            </span>
+                        </p>
+                    </div>
+                </a>
+            {% else %}
+                <div class="votedDiv">
+                    <p style="text-align: center">
+                        <span>
+                            Voted for {{ Coin.token_name }}
+                        </span>
+                    </p>
+                </div>
+            {% endif %}
+
+
+                <div class="cardShadow">
+                    <div class="coinInfo">
+                        <div class="coinNameAndBoi">
+                            <img style="border-radius: 50%" src="{{ Coin.token_logo_link }}" alt="Coin Image">
+                            <div class="titleBoi">
+                                <h2>{{ Coin.token_name }}&nbsp;<span class="coinLabel">{{ Coin.token_symbol }}</span></h2>
+                                <p>Do your own research</p>
+                            </div>
+                        </div>
+                        <div class="coinQuesetion">
+                            <h4>What is {{ Coin.token_name }}?</h4>
+                            <p>{{ Coin.token_description }}</p>
+                        </div>
+                        <div class="coinCopyLink">
+                            <form class="d-flex" action="#">
+                                <input readonly value="{{ Coin.smart_chain_address }}" class="form-control me-2" type="text" id="coinLink" />
+                                <button onclick="copyCoinLink()" class="btn" type="button" id="copyBtn">Copy</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-8 col-sm-12">
+                    <h2 style="padding: 0px;font-size: 24px;text-align: left">Impressions</h2>
+                </div>
+
+
+                 {% if Impressions.count > 0 %}
+                    <div class="cardShadow">
+                        {% for imp in Impressions %}
+                            <div class="impUserBg">
+                                <div class="improfileBg">
+                                    <div class="impUserProfile">{{ imp.User.fullname.0 }}</div>
+                                </div>
+                                <div class="impuserDetaisBg">
+                                    <div class="impUserDetails">
+                                        <h4>{{ imp.User.fullname }}</h4>
+                                        <p>{{ imp.timeStamp }}</p>
+                                    </div>
+                                </div>
+                                <br><br><br>
+                                <p style="margin-left: 65px;margin-top: -20px;color:grey;">{{ imp.impression_text }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+
+
+                {% if request.user.is_authenticated %}
+                    <div class="cardShadow cardExtra">
+                        <br>
+                        <form action="{% url 'ImpressionSubmit' Coin.coin_slug %}" method="post">
+                            {% csrf_token %}
+                            <textarea name="imp_text" class="form-control" placeholder="What do you think about this coin?"></textarea>
+                            <br>
+                            <button type="submit" style="text-align: center" class="btn">Submit Impression</button>
+                        </form>
+                    </div>
+                {% endif %}
+
+
+
+                {% if Impressions.count == 0 %}
+                    <div class="cardShadow">
+                        <p style="margin: 0px;text-align: center;text-transform: uppercase">No impressions</p>
+                    </div>
+                {% endif %}
+
+             {% if request.user.is_authenticated %}
+             {% else %}
+                 <div class="cardShadow">
+                    <p style="margin: 0px;text-align: center;text-transform: uppercase">Please login</p>
+                </div>
+             {% endif %}
+            </div>
+
+
+            <div class="col-md-4 col-sm-12">
+                <div class="cardShadow cardExtra">
+                    {% comment %}<p>Token Price</p>
+                    <h3>$0.00000454565</h3>
+                    <p>Market Cap</p>
+                    <h3>$4565</h3>{% endcomment %}
+                    <p>Launch Date</p>
+                    <h3>{{ Coin.launch_date }}</h3>
+                </div>
+
+                <div class="cardShadow cardExtra">
+                    <p>Website</p>
+                    <a style="color: #333;text-decoration: none;font-size: 14px;font-weight: 500" class="websiteP" href="{{ Coin.website }}">{{ Coin.website }}</a>
+                    <br>
+                    <p>Socials</p>
+                    {% if Coin.telegram %}
+                        <a href="{{Coin.telegram}}" class="btn"><i class="fab fa-telegram-plane"></i>&nbsp;&nbsp;Telegram</a>
+                    {% endif %}
+                    {% if Coin.twitter %}
+                        <a href="{{Coin.twitter}}" class="btn"><i class="fab fa-twitter"></i>&nbsp;&nbsp;Twitter</a>
+                    {% endif %}
+                    {% if Coin.reddit %}
+                        <a href="{{ Coin.reddit }}" class="btn"><i class="fab fa-reddit"></i>&nbsp;&nbsp;Reddit</a>
+                    {% endif %}
+
+                </div>
+
+                <div class="cardShadow addvertisementCard">
+                    <a href="#">
+                        <img src="{% static 'images/list-1080.jpg' %}" alt="Banner">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    <script>
+    // Copy text function from input field
+    function copyCoinLink() {
+
+
+        // taking tags id names
+        var copyText = document.getElementById("coinLink");
+        var buttonText = document.getElementById('copyBtn');
+
+
+        // copying text and chaning different things styles and text etc.
+        copyText.select();
+        document.execCommand('copy');
+        buttonText.innerText = "Copied";
+        buttonText.className = "changeBtn";
+    }
+
+    </script>
+{% endblock %}
+
+

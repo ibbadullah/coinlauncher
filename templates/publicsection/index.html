@@ -1,0 +1,775 @@
+{% extends 'publicsection/indexBase.html' %}
+{% load static %}
+{% load filters %}
+{% block title %}Coin Voting Website - CoinLauncher{% endblock %}
+
+{% block description %}CoinLauncher is a very good and best website for coin voting and coin launching. You can list your coin on CoinLauncher and can also promote your coin.{% endblock %}
+{% block keywords %}coin voting,coin impression{% endblock %}
+{% block author %}CoinLauncher{% endblock %}
+{% block robots %}index, follow{% endblock %}
+
+{% block ogtitle %}Coin Voting Website - CoinLauncher{% endblock %}
+{% block ogdescription %}CoinLauncher is a very good and best website for coin voting and coin launching. You can list your coin on CoinLauncher and can also promote your coin.{% endblock %}
+{% block ogurl %}https://coinlauncher.net/signup/{% endblock %}
+{% block ogimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block twittertitle %}Coin Voting Website - CoinLauncher{% endblock %}
+{% block twitterdescription %}CoinLauncher is a very good and best website for coin voting and coin launching. You can list your coin on CoinLauncher and can also promote your coin.{% endblock %}
+{% block twitterimage %}https://coinlauncher.net{% static 'images/logo.png' %}{% endblock %}
+
+{% block pageurl %}https://coinlauncher.net{% endblock %}
+
+{% block externalFiles %}
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "WebSite",
+          "name": "Coin Launcher",
+          "url": "https://coinlauncher.net/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{search_term_string}",
+            "query-input": "required name=search_term_string"
+              }
+            }
+    </script>
+{% endblock %}
+{% block internalCSS %}
+    <style>
+    /*Total coins*/
+    .totalCoinDiv{
+        width: 240px;
+        height: 70px;
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid gainsboro;
+    }
+    .totalCoinDiv img{
+        width: 50px;
+        height: 50px;
+        float: left;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    .coinsTitle{
+        float: left;
+        margin-left: 10px!important;
+        margin-top: 10px;
+        font-size: 15px;
+        font-weight: 400;
+        color: #333;
+    }
+    .totalCoins{
+        font-size: 17px;
+        font-weight: 500;
+        color: #333;
+    }
+    .bottomLine{
+       border-bottom: 1px solid gainsboro;
+       padding-bottom: 8px;
+    }
+    .allTimeBestTitle{
+        text-align: left;
+        padding: 0px;
+    }
+    .allTimeBestTitle h2{
+        margin-left: 12px;
+        cursor: pointer;
+    }
+    .todayBestDealsTitle{
+        text-align: left;
+        padding: 0px;
+    }
+    .bottomLine h2{
+        cursor:pointer;
+    }
+    .titleActive{
+        border-bottom: 2px solid #df1717;
+        padding-bottom: 12px;
+        display: unset;
+    }
+     .searchCol{
+        text-align: right;
+    }
+    .searchCol button{
+        background-color: white;
+        color: #df1717;
+        border: 1px solid gainsboro;
+    }
+    .searchCol button:hover{
+        background-color: #df1717;
+        color: white;
+        border-color: #df1717;
+    }
+    .formDiv{
+        padding: 5px;
+        background-color: white;
+        border-radius: 5px;
+        float: right;
+        display: none;
+        border: 1px solid gainsboro;
+    }
+    .formDiv button{
+        background: none;
+        border: none;
+    }
+    .formDiv input{
+        height: 35px;
+        border: 1px solid gainsboro;
+        border-radius: 5px;
+    }
+    .searchBtnC{
+        float: right;
+    }
+    .launchInNumbers{
+        font-size: 20px;
+        color: #df1717;
+        font-weight: 600;
+        text-decoration: line-through;
+        text-decoration-color: white;
+        text-decoration-thickness: 1px
+    }
+    .launchInStrings{
+        font-size: 14px;
+        color: #df1717;
+        font-weight: 500;
+    }
+    .launchInNumbers td{
+        text-align: center;
+    }
+    .launchInStrings td{
+        text-align: center;
+    }
+
+    @media only screen and (max-width: 550px) {
+        .alltimeTCol{
+            width: 50%;
+        }
+        .todayTCol{
+            width: 50%;
+        }
+        .searchBtnC{
+            margin-top: 15px;
+            float: left;
+        }
+        .formDiv{
+            margin-top: 15px;
+            float: left;
+        }
+
+    }
+
+
+    /* Alert Stuff */
+
+    .successAlertBg{
+        width: 100%;
+        height: 100vh;
+        z-index: 900;
+        background-color: rgba(22,22,32,0.4);
+        position: fixed;
+        display: none;
+    }
+    .successAlert{
+        padding: 15px 25px 15px 25px;
+        background-color: green;
+        position: absolute;
+        right: 10px;
+        border-radius: 5px;
+        top: 30px;
+    }
+    .successAlert p{
+        color: white;
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+
+    <!--Alert box-->
+     <div class="successAlertBg">
+        <div class="successAlert">
+            <p>Your vote was submitted!</p>
+        </div>
+    </div>
+
+
+
+
+    <!--Total coins-->
+    {% comment %}<div class="container">
+        <div class="totalCoinDiv" style="margin-top: 100px">
+            <img src="{% static 'images/totalCoins.svg' %}" alt="Coins">
+            <p class="coinsTitle">
+                Coins Listed<br>
+                <span class="totalCoins">{{ TotalCoins }}</span>
+            </p>
+        </div>
+    </div>
+{% endcomment %}
+
+
+
+
+    <!--Promoted coins-->
+    <div class="container tableTitleContainer" style="margin-top: 100px">
+        <h2>💎 Hot Launch</h2>
+        <p>Even though promoted, trying to choose quality projects only.</p>
+    </div>
+    <div class="container tableContainer promotedCoinsTableBg">
+        <table>
+            <tr class="tableHeading">
+                <th></th>
+                <th class="tablePriceHeading"></th>
+                <th class="tableMarketHeading"></th>
+                <th class="tableAgeHeading">AGE</th>
+                <th>VOTES</th>
+            </tr>
+
+            {% for c in PCoins %}
+                <tr class="dataRow">
+
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">
+                        <img style="border-radius: 50%" class="coinImage" src="{{ c.token_logo_link }}" alt="Coin log">
+                        <span class="coinName">{{ c.token_name }}<br>
+                            <span class="coinType">${{ c.token_symbol }}</span><br>
+                            {% if c.presale == 'Yes' %}
+                                <span class="coinLabel">PRESALE</span>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td class="dataTd tablePrice"></td>
+                    <td class="dataTd tableMarketCap"></td>
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')" class="dataTd tableAge">{{ c.timeStamp }}</td>
+
+
+                    <td class="tableButton">
+                        {% if request|checkUserVoteF:c.id %}
+                            <button style="color: #d6c9cc;border-color: #dba9b4" class="btn btn-outline-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                        {% else %}
+                            <button id="voteBtn{{ c.id }}" type="button" class="btn btn-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                            <button style="display: none;color: #d6c9cc;border-color: #dba9b4" id="submittedVoteBtn{{ c.id }}" type="button" class="btn btn-danger"></button>
+                        {% endif %}
+                    </td>
+                </tr>
+
+
+                <script>
+
+                    $(document).ready(function () {
+                        $('#voteBtn{{ c.id }}').click(function () {
+                            $('#voteBtn{{ c.id }}').css({"display":"none"});
+                            $('#submittedVoteBtn{{ c.id }}').css({"display":"inline-block"});
+                            $('.successAlertBg').css('display','block');
+                            var totalVotes = {{ c.id|totalVotes }} + 1;
+                            $('#submittedVoteBtn{{ c.id }}').html('🚀&nbsp;'+totalVotes);
+
+                            var data = {"id":{{ c.id }}};
+                            $.ajax({
+                                url: "{% url 'SubmitVoteUser' c.id %}",
+                                method: "GET",
+                                data: data,
+                                success : function (data) {
+                                    setTimeout(e=>{
+                                        $('.successAlertBg').css('display','none');
+                                    },2000);
+                                    console.log("Vote submitted!");
+                                },
+                            });
+                        });
+                    });
+                </script>
+            {% endfor %}
+
+        </table>
+    </div>
+
+
+
+
+
+
+        <!--Launching Soon-->
+    <div class="container tableTitleContainer" style="margin-top: 40px">
+        <h2>Launch Pad</h2>
+        <p>Never miss a launch again!</p>
+    </div>
+
+    <div class="container tableContainer">
+        <table>
+            <tr class="tableHeading">
+                <th></th>
+                <th class="tablePriceHeading"></th>
+                <th class="tableMarketHeading"></th>
+                <th class="" style="text-transform: uppercase">Launch In</th>
+                <th>VOTES</th>
+            </tr>
+
+
+            {% for c in LSCoins %}
+                <tr class="dataRow">
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">
+                        <img style="border-radius: 50%" class="coinImage" src="{{ c.token_logo_link }}" alt="Coin log">
+                        <span class="coinName">{{ c.token_name }}<br>
+                            <span class="coinType">${{ c.token_symbol }}</span><br>
+                            {% if c.presale == 'Yes' %}
+                                <span class="coinLabel">PRESALE</span>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td class="dataTd tablePrice"></td>
+                    <td class="dataTd tableMarketCap"></td>
+                    <td class="">
+                    <table style="background: none">
+                        <tr class="launchInNumbers">
+                            <td id="days{{ c.id }}">04</td>
+                            <td id="hours{{ c.id }}">05</td>
+                            <td id="minutes{{ c.id }}">43</td>
+                            <td id="seconds{{ c.id }}">22</td>
+
+                            <script>
+                            function makeTimer{{ c.id }}() {
+                                    //		var endTime = new Date("29 April 2018 9:56:00 GMT+01:00");
+                                        var endTime = new Date("{{ c.launch_date|date:'j F Y g:i' }}:00 GMT+01:00");
+                                            endTime = (Date.parse(endTime) / 1000);
+
+                                            var now = new Date();
+                                            now = (Date.parse(now) / 1000);
+
+                                            var timeLeft = endTime - now;
+
+                                            var days = Math.floor(timeLeft / 86400);
+                                            var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+                                            var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+                                            var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+                                            if (hours < "10") { hours = "0" + hours; }
+                                            if (minutes < "10") { minutes = "0" + minutes; }
+                                            if (seconds < "10") { seconds = "0" + seconds; }
+
+                                            $("#days{{ c.id }}").html(days);
+                                            $("#hours{{ c.id }}").html(hours);
+                                            $("#minutes{{ c.id }}").html(minutes);
+                                            $("#seconds{{ c.id }}").html(seconds);
+                                    }
+                                    setInterval(function() { makeTimer{{ c.id }}(); }, 1000);
+                        </script>
+                        </tr>
+                        <tr class="launchInStrings">
+                            <td>D<span class="timerStringHide">ays</span></td>
+                            <td>H<span class="timerStringHide">ours</span></td>
+                            <td>M<span class="timerStringHide">ins</span></td>
+                            <td>S<span class="timerStringHide">ecs</span></td>
+                        </tr>
+                    </table>
+                </td>
+                    <td class="tableButton">
+                        {% if request|checkUserVoteF:c.id %}
+                            <button style="color: #d6c9cc;border-color: #dba9b4" class="btn btn-outline-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                        {% else %}
+                            <button id="voteBtn{{ c.id }}" type="button" class="btn btn-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                            <button style="display: none;color: #d6c9cc;border-color: #dba9b4" id="submittedVoteBtn{{ c.id }}" type="button" class="btn btn-danger"></button>
+                        {% endif %}
+                    </td>
+                </tr>
+
+
+                <script>
+
+                    $(document).ready(function () {
+                        $('#voteBtn{{ c.id }}').click(function () {
+                            $('#voteBtn{{ c.id }}').css({"display":"none"});
+                            $('#submittedVoteBtn{{ c.id }}').css({"display":"inline-block"});
+                            $('.successAlertBg').css('display','block');
+                            var totalVotes = {{ c.id|totalVotes }} + 1;
+                            $('#submittedVoteBtn{{ c.id }}').html('🚀&nbsp;'+totalVotes);
+
+                            var data = {"id":{{ c.id }}};
+                            $.ajax({
+                                url: "{% url 'SubmitVoteUser' c.id %}",
+                                method: "GET",
+                                data: data,
+                                success : function (data) {
+                                    setTimeout(e=>{
+                                        $('.successAlertBg').css('display','none');
+                                    },2000);
+                                    console.log("Vote submitted!");
+                                },
+                            });
+                        });
+                    });
+                </script>
+            {% endfor %}
+
+        </table>
+    </div>
+
+
+
+
+
+
+
+    <div class="container tableTitleContainer" style="margin-top: 40px">
+        <div class="row bottomLine">
+            <div class="col-md-2 col-sm-6 alltimeTCol">
+                <h2 class="allTimeBestTitle">All time best</h2>
+            </div>
+
+            <div class="col-md-2 col-sm-6 todayTCol">
+                <h2 class="titleActive todayBestDealsTitle">Today's best</h2>
+            </div>
+            <div class="col-md-8 col-sm-12 searchCol">
+                <div class="formDiv">
+                    <form action="#">
+                        <button class="btn" type="button" id="formSearchBtn"><i class="fa fa-search"></i>&nbsp;Search</button>
+                        <input type="text" id="searchQ1" class="input1">
+                        <input type="text" id="searchQ2" class="input2" style="display: none">
+                        <button type="button" class="btn closeBtnC"><i class="fa fa-times"></i></button>
+                    </form>
+                </div>
+                <button class="btn searchBtnC"><i class="fa fa-search"></i>&nbsp;Search</button>
+            </div>
+        </div>
+
+        <p style="margin-top: 10px" class="todaysBestDesc">If its here, maybe it's not too late, check it out!</p>
+        <p style="margin-top: 10px;display: none" class="allTimesBestDesc">All time, maybe it's not too late, check it out!</p>
+    </div>
+
+
+    <!--Today's best-->
+    <div class="container tableContainer todaysBestTable">
+        <table>
+            <tr class="tableHeading">
+                <th></th>
+                <th class="tablePriceHeading"></th>
+                <th class="tableMarketHeading"></th>
+                <th class="tableAgeHeading">AGE</th>
+                <th>VOTES</th>
+            </tr>
+
+
+            {% for c in TBCoins|slice:"15" %}
+                <tr class="dataRow todayBestFilter">
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">
+                        <img style="border-radius: 50%" class="coinImage" src="{{ c.token_logo_link }}" alt="Coin log">
+                        <span class="coinName">{{ c.token_name }}<br>
+                            <span class="coinType">${{ c.token_symbol }}</span><br>
+                            {% if c.presale == 'Yes' %}
+                                <span class="coinLabel">PRESALE</span>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td class="dataTd tablePrice"></td>
+                    <td class="dataTd tableMarketCap"></td>
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')" class="dataTd tableAge">
+                        {% if c.timeStamp == None %}
+                            Not Launched Yet
+                        {% else %}
+                            {{ c.timeStamp }}
+                        {% endif %}
+                    </td>
+                    <td class="tableButton">
+                        {% if request|checkUserVoteF:c.id %}
+                            <button style="color: #d6c9cc;border-color: #dba9b4" class="btn btn-outline-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                        {% else %}
+                            <button id="tbvoteBtn{{ c.id }}" type="button" class="btn btn-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                            <button style="display: none;color: #d6c9cc;border-color: #dba9b4" id="tbsubmittedVoteBtn{{ c.id }}" type="button" class="btn btn-danger"></button>
+                        {% endif %}
+                    </td>
+
+                    <script>
+
+                        $(document).ready(function () {
+                            $('#tbvoteBtn{{ c.id }}').click(function () {
+                                $('#tbvoteBtn{{ c.id }}').css({"display":"none"});
+                                $('#tbsubmittedVoteBtn{{ c.id }}').css({"display":"inline-block"});
+                                $('.successAlertBg').css('display','block');
+                                var totalVotes = {{ c.id|totalVotes }} + 1;
+                                $('#tbsubmittedVoteBtn{{ c.id }}').html('🚀&nbsp;'+totalVotes);
+
+                                var data = {"id":{{ c.id }}};
+                                $.ajax({
+                                    url: "{% url 'SubmitVoteUser' c.id %}",
+                                    method: "GET",
+                                    data: data,
+                                    success : function (data) {
+                                        setTimeout(e=>{
+                                            $('.successAlertBg').css('display','none');
+                                        },2000);
+                                        console.log("Vote submitted!");
+                                    },
+                                });
+                            });
+                        });
+                    </script>
+                </tr>
+            {% endfor %}
+
+
+        <!-- Showing all today best -->
+        {% for c in TBCoins %}
+                <tr class="dataRow todayAllBestRow" style="display: none">
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">
+                        <img style="border-radius: 50%" class="coinImage" src="{{ c.token_logo_link }}" alt="Coin log">
+                        <span class="coinName">{{ c.token_name }}<br>
+                            <span class="coinType">${{ c.token_symbol }}</span><br>
+                            {% if c.presale == 'Yes' %}
+                                <span class="coinLabel">PRESALE</span>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td class="dataTd tablePrice"></td>
+                    <td class="dataTd tableMarketCap"></td>
+                    <td class="dataTd tableAge" onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">{{ c.timeStamp }}</td>
+                    <td class="tableButton">
+                        {% if request|checkUserVoteF:c.id %}
+                            <button style="color: #d6c9cc;border-color: #dba9b4" class="btn btn-outline-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                        {% else %}
+                            <button id="tbvoteBtn{{ c.id }}" type="button" class="btn btn-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                            <button style="display: none;color: #d6c9cc;border-color: #dba9b4" id="tbsubmittedVoteBtn{{ c.id }}" type="button" class="btn btn-danger"></button>
+                        {% endif %}
+                    </td>
+                </tr>
+
+
+                <script>
+
+                    $(document).ready(function () {
+                        $('#tbvoteBtn{{ c.id }}').click(function () {
+                            $('#tbvoteBtn{{ c.id }}').css({"display":"none"});
+                            $('#tbsubmittedVoteBtn{{ c.id }}').css({"display":"inline-block"});
+                            $('.successAlertBg').css('display','block');
+                            var totalVotes = {{ c.id|totalVotes }} + 1;
+                            $('#tbsubmittedVoteBtn{{ c.id }}').html('🚀&nbsp;'+totalVotes);
+
+                            var data = {"id":{{ c.id }}};
+                            $.ajax({
+                                url: "{% url 'SubmitVoteUser' c.id %}",
+                                method: "GET",
+                                data: data,
+                                success : function (data) {
+                                    setTimeout(e=>{
+                                        $('.successAlertBg').css('display','none');
+                                    },2000);
+                                    console.log("Vote submitted!");
+                                },
+                            });
+                        });
+                    });
+                </script>
+            {% endfor %}
+
+        </table>
+
+        {% if TodayTotalBest.count > 15 %}
+            <p style="text-align: center;margin-top: 2px;margin-bottom: 2px;cursor: pointer;" class="showAllP">Show all</p>
+        {% elif TodayTotalBest.count == 0 %}
+            <p style="text-align: center;margin-top: 2px;margin-bottom: 2px;cursor: pointer">No coins found.</p>
+        {% endif %}
+    </div>
+
+
+
+    <!--All time best-->
+    <div class="container tableContainer allTimeBestTable ctable" style="display: none">
+        <table>
+            <tr class="tableHeading">
+                <th></th>
+                <th class="tablePriceHeading"></th>
+                <th class="tableMarketHeading"></th>
+                <th class="tableAgeHeading">AGE</th>
+                <th>VOTES</th>
+            </tr>
+
+            {% for c in AllTimeBest %}
+                <tr class="dataRow">
+                    <td onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">
+                        <img style="border-radius: 50%" class="coinImage" src="{{ c.token_logo_link }}" alt="Coin log">
+                        <span class="coinName">{{ c.token_name }}<br>
+                            <span class="coinType">${{ c.token_symbol }}</span><br>
+                            {% if c.presale == 'Yes' %}
+                                <span class="coinLabel">PRESALE</span>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td class="dataTd tablePrice"></td>
+                    <td class="dataTd tableMarketCap"></td>
+                    <td class="dataTd tableAge" onclick="window.open('{% url 'CoinDetails' c.coin_slug %}','_self')">
+                        {% if c.timeStamp == None %}
+                            Not Launched Yet
+                        {% else %}
+                            {{ c.timeStamp }}
+                        {% endif %}
+                    </td>
+                    <td class="tableButton">
+                        {% if request|checkUserVoteF:c.id %}
+                            <button style="color: #d6c9cc;border-color: #dba9b4" class="btn btn-outline-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                        {% else %}
+                            <button id="avoteBtn{{ c.id }}" type="button" class="btn btn-danger">🚀 &nbsp;{{ c.id|totalVotes }}</button>
+                            <button style="display: none;color: #d6c9cc;border-color: #dba9b4" id="asubmittedVoteBtn{{ c.id }}" type="button" class="btn btn-danger"></button>
+                        {% endif %}
+                    </td>
+                </tr>
+
+
+                <script>
+
+                    $(document).ready(function () {
+                        $('#avoteBtn{{ c.id }}').click(function () {
+                            $('#avoteBtn{{ c.id }}').css({"display":"none"});
+                            $('#asubmittedVoteBtn{{ c.id }}').css({"display":"inline-block"});
+                            $('.successAlertBg').css('display','block');
+                            var totalVotes = {{ c.id|totalVotes }} + 1;
+                            $('#asubmittedVoteBtn{{ c.id }}').html('🚀&nbsp;'+totalVotes);
+
+                            var data = {"id":{{ c.id }}};
+                            $.ajax({
+                                url: "{% url 'SubmitVoteUser' c.id %}",
+                                method: "GET",
+                                data: data,
+                                success : function (data) {
+                                    setTimeout(e=>{
+                                        $('.successAlertBg').css('display','none');
+                                    },2000);
+                                    console.log("Vote submitted!");
+                                },
+                            });
+                        });
+                    });
+                </script>
+            {% endfor %}
+
+        </table>
+        <p style="text-align: center;margin-top: 2px;margin-bottom: 2px;" class="notFoundMessage2"></p>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+
+
+
+    <script>
+
+
+    //function for showing all the best today
+    $('.input1').click(function () {
+       $('.showAllP').hide();
+       $('.todayBestFilter').hide();
+       $('.todayAllBestRow').show();
+    });
+     $('.showAllP').click(function () {
+       $('.showAllP').hide();
+       $('.todayBestFilter').hide();
+       $('.todayAllBestRow').show();
+    });
+
+
+    //today best
+    $('#searchQ1').keyup(function () {
+        searchTable1($(this).val());
+        $('.todayBestFilter').hide();
+    });
+
+    function searchTable1(value){
+        $('.todaysBestTable .dataRow').each(function () {
+           var found = 'false';
+           //getting text from table and converting to lover case
+           $(this).each(function () {
+              if($(this).text().toLowerCase().indexOf(value.toLowerCase())>=0){
+                  found = 'true';
+              }
+              if(found=='true'){
+                  $(this).show();
+              }
+              else {
+                  $(this).hide();
+              }
+           });
+        });
+    }
+
+
+    //All time best
+    $('#searchQ2').keyup(function () {
+        searchTable2($(this).val());
+    });
+
+
+    function searchTable2(value){
+        $('.allTimeBestTable .dataRow').each(function () {
+           var found = 'false';
+           //getting text from table and converting to lover case
+           $(this).each(function () {
+              if($(this).text().toLowerCase().indexOf(value.toLowerCase())>=0){
+                  found = 'true';
+              }
+              if(found=='true'){
+                  $(this).show();
+              }
+              else {
+                  $(this).hide();
+              }
+           });
+        });
+    }
+
+
+
+
+    $(document).ready(function () {
+        //times best deals handling stuff
+       $('.allTimeBestTitle').click(function () {
+           // hiding todays best
+           $('form')[0].reset();
+           $('.input2').show();
+           $('.input1').hide();
+           $('.todaysBestTable').css("display","none");
+           $('.todaysBestDesc').css("display","none");
+           $('.todayBestDealsTitle').removeClass('titleActive');
+           // showing all time best
+           $('.allTimeBestTitle').addClass('titleActive');
+           $('.allTimeBestTable').css("display","block");
+           $('.allTimesBestDesc').css("display","block");
+       });
+       $('.todayBestDealsTitle').click(function () {
+           // showing todays best
+           $('form')[0].reset();
+           $('.input1').show();
+           $('.input2').hide();
+           $('.todaysBestTable').css("display","block");
+           $('.todaysBestDesc').css("display","block");
+           $('.todayBestDealsTitle').addClass('titleActive');
+           // hiding all time best
+           $('.allTimeBestTitle').removeClass('titleActive');
+           $('.allTimeBestTable').css("display","none");
+           $('.allTimesBestDesc').css("display","none");
+       });
+    });
+
+
+
+    // coins search form handling stuff
+    $('.searchBtnC').click(function () {
+       $('.searchBtnC').css({"display":"none"});
+       $('.formDiv').css({"display":"block"});
+    });
+
+    $('.closeBtnC').click(function () {
+        $('.formDiv').css({"display":"none"});
+       $('.searchBtnC').css({"display":"block"});
+    });
+
+    </script>
+{% endblock %}
