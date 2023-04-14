@@ -1,0 +1,101 @@
+.sectionTitleContainer h2{
+        font-size: 26px;
+        color: #333;
+    }
+    .sectionTitleContainer p{
+        font-size: 14px;
+        font-weight: 300;
+    }
+    .coinCards{
+        margin-top: 20px;
+        border-radius: 6px;
+        padding: 15px;
+        width: 350px;
+        background-color: white;
+        border: 1px solid gainsboro;
+        float: left;
+        display: block;
+        margin-left: 15px;
+    }
+    .modal-content{
+        overflow: hidden!important;
+    }
+    .modal-body{
+        padding: 0px;
+    }
+    .modalLinkButton{
+        display: block;
+        text-decoration: none;
+        color: #333;
+        padding: 8px 8px 8px 16px;
+        width: 100%;
+    }
+    .modalLinkButton:hover{
+        background-color: #f0f0f0;
+        color: #df1717;
+    }
+
+    .coinImageC{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .coinLinkOne{
+        text-decoration: none;
+        color: #333333;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .coinLinkTwo{
+        text-decoration: none;
+        color: grey;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .coinDescrption{
+        font-size: 15px;
+        color: #333;
+        font-weight: 400;
+        margin-top: 10px;
+        text-overflow: ellipsis;
+      word-wrap: break-word;
+      overflow: hidden;
+      max-height: 2.4em;
+      line-height: 1.2em;
+    }
+    .coinBadge{
+        text-align: right;
+        font-size: 12px;
+        padding: 3px;
+        color: green;
+        background-color: #fceceb;
+        border-radius: 1px;
+        display: unset;
+        float: right;
+    }
+    .approvalMessaageDiv{
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+        font-size: 13px;
+        background-color: #fef7e2;
+        border-radius: 5px;
+        border: 2px solid #fbe7a8;
+        color: #cd9f0c;
+    }
+    .approvalMessaageDiv i{
+        float: left;
+        margin-top: 3px;
+    }
+    .approvalMessaageDiv p{
+        margin-left: 15px;
+        margin-bottom: 0px;
+    }
+
+
+    @media only screen and (max-width: 900px) {
+        .coinCards{
+            width: 90%;
+            margin-left: 5%;
+        }
+    }

@@ -1,0 +1,35 @@
+{% extends 'publicsection/indexBase.html' %}
+{% load static %}
+{% block title %}Page not found{% endblock %}
+{% block externalFiles %}
+{% endblock %}
+{% block internalCSS %}
+    <style>
+        .headerContainer{
+            margin-top: 110px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .headerContainer h2{
+            font-size: 34px;
+            font-weight: 500;
+            color: #333;
+        }
+        .headerContainer p{
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: grey;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container headerContainer">
+        <div style="font-size: 45px;margin-bottom: 10px;">&#128555</div>
+        <h2>Opp's!</h2>
+        <p>Sorry the page not found.</p>
+    </div>
+{% endblock %}

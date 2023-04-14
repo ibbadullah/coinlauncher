@@ -1,0 +1,144 @@
+{% extends 'adminsection/indexBase.html' %}
+{% load static %}
+{% block title %}Add Coin{% endblock %}
+{% block externalFiles %}
+    <link rel="stylesheet" href="{% static 'css/accountSectionForm.css' %}">
+{% endblock %}
+
+{% block internalCSS %}
+    <style>
+    .sectionTitleContainer a{
+        text-decoration: none;
+        color: grey;
+        text-align: left;
+        font-size: 20px;
+    }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+
+    <div>
+        <div class="container sectionTitleContainer" style="margin-top: 100px">
+            <a href="{% url 'AdminDashboard' %}"><i class="fa fa-arrow-left"></i>&nbsp;Dashboard</a>
+            <h2>Add a Coin</h2>
+            <p>Publish a coin right now.</p>
+        </div>
+        <div class="container">
+            <div class="form-card">
+                <form action="{% url 'AdminAddCoin' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 style="font-size: 22px;color: #333">Token Informations</h4>
+                            <div class="form-group">
+                                <label for="name">Token Name <span class="requiredField">Required</span></label>
+                                <input type="text" class="form-control" name="coin_name" placeholder="Expl: Bitcoin" id="name" required>
+                             </div>
+                             <div class="form-group">
+                                <label for="btc">Token Symbol  <span class="requiredField">Required</span></label>
+                                <input type="text" class="form-control" name="coin_symbol" placeholder="Expl: BTC" id="btc" required>
+                             </div>
+                            <div class="form-group">
+                                 <label for="coin_desc">Token Description  <span class="requiredField">Required</span></label>
+                                <textarea style="height: 150px" class="form-control" id="coin_desc" name="coin_desc" placeholder="Expl: Bitcoin is an innovative payment network and a new kind of money."></textarea>
+                            </div>
+                            <div class="form-group">
+                                 <label for="coinLanchStatus">Is the coin launched?  <span class="requiredField">Required</span></label>
+                                <select class="form-control" name="is_coin_launched" id="coinLanchStatus" required>
+                                    <option value="" disabled selected>Select Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="launchTime">Launch Date  <span class="requiredField" style="color: darkorange">Date format dd/mm/yyyy</span></label>
+                                <input type="datetime-local" class="form-control" name="launch_date"  id="launchTime" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="logoLinkT">Token Logo Link  <span class="requiredField">Required</span></label>
+                                <input type="url" class="form-control" name="token_logo_link" placeholder="Expl: https://..." id="logoLinkT" required>
+                             </div>
+
+
+                            <div class="form-group">
+                                 <label for="presale">Is there any Presale?  <span class="requiredField">Required</span></label>
+                                <select class="form-control" name="coin_presale" id="presale" required>
+                                    <option value="" disabled selected>Select Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                 <label for="prcoin">Is this a promoted coin?  <span class="requiredField">Required</span></label>
+                                <select class="form-control" name="promoted_coin" id="prcoin" required>
+                                    <option value="" disabled selected>Select Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <h4 style="font-size: 22px;color: #333">Smart Contracts</h4>
+                            <div class="form-group">
+                                <label for="tbsmart">Token Binance Smart Chain contract address</label>
+                                <input type="text" class="form-control" name="smart_contract" placeholder="Expl: https://bscscan.com/token/0x0000000000000000000000000000000000000000" id="tbsmart" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="teth">Token Ethereum contract address</label>
+                                <input type="text" class="form-control" name="ethereum_contract" placeholder="Expl: https://etherscan.io/token/0x0000000000000000000000000000000000000000" id="teth" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                 <label for="otherLinks">Other links, other blockchain contracts or anything else you would like to add to your coin request</label>
+                                <textarea style="height: 150px" class="form-control" id="otherLinks" name="other_links" placeholder=""></textarea>
+                            </div>
+
+                            <h4 style="font-size: 22px;color: #333">Socials</h4>
+                            <div class="form-group">
+                                <label for="weburl">Website</label>
+                                <input type="url" class="form-control" name="website" placeholder="Expl: https://bitcoin.org" id="weburl" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="turl">Telegram</label>
+                                <input type="url" class="form-control" name="telegram" placeholder="Expl: https://telegram.com" id="turl" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="twurl">Twitter</label>
+                                <input type="url" class="form-control" name="twitter" placeholder="Expl: https://twitter.com" id="twurl" autocomplete="off">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rdurl">Reddit</label>
+                                <input type="url" class="form-control" name="reddit" placeholder="Expl: https://reddit.com" id="rdurl" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="text-align: center;margin-top: 20px">
+                            <button class="btn btnBg" type="submit" style="font-weight: 500">Add coin</button>
+                         </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+    $(document).ready(function () {
+
+    });
+    </script>
+{% endblock %}

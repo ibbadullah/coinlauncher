@@ -1,0 +1,238 @@
+{% extends 'adminsection/indexBase.html' %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block externalFiles %}
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+{% endblock %}
+
+{% block internalCSS %}
+    <style>
+    body{
+        overflow-x: hidden;
+    }
+    .infoCards{
+        width: 250px;
+        height: auto;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid gainsboro;
+        border-radius: 5px;
+        float: left;
+        margin-left: 20px;
+        border-left: 4px solid green;
+        margin-bottom: 15px;
+    }
+    .infoTitleIcon{
+        font-size: 20px;
+        color: darkgrey;
+    }
+    .totalDiv p{
+        margin-bottom: 0px;
+        font-size: 24px;
+        font-weight: 500;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+
+    /*Targeting card on mobile screens Mobile*/
+    @media only screen and (max-width: 700px) {
+        .infoCards{
+            width: 90%;
+            margin-left: 5%;
+        }
+        .totalDiv p{
+            text-align: left;
+        }
+    }
+    </style>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <div class="container tableTitleContainer" style="margin-top: 100px">
+        <h2>Admin Dashboard</h2>
+        <p>Welcome back {{ request.user.fullname }}!</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container" style="margin-top: 30px">
+        <div class="infoCards">
+            <div class="infoTitleIcon">
+                <i class="fab fa-bitcoin"></i>
+                <span>Total Coins</span>
+            </div>
+            <div class="totalDiv">
+                <p>{{ TotalCoins }}</p>
+            </div>
+        </div>
+
+        <div class="infoCards">
+            <div class="infoTitleIcon">
+                <i class="fas fa-poll"></i>
+                <span>Total Votes</span>
+            </div>
+            <div class="totalDiv">
+                <p>{{ TotalVotes }}</p>
+            </div>
+        </div>
+
+     <div class="infoCards">
+            <div class="infoTitleIcon">
+                <i class="fa fa-comments"></i>
+                <span>Total Impressions</span>
+            </div>
+            <div class="totalDiv">
+                <p>{{ TotalImpressions }}</p>
+            </div>
+        </div>
+
+
+     <div class="infoCards">
+            <div class="infoTitleIcon">
+                <i class="fa fa-users"></i>
+                <span>Total Users</span>
+            </div>
+            <div class="totalDiv">
+                <p>{{ TotalUsers }}</p>
+            </div>
+        </div>
+
+    </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="container tableTitleContainer" style="margin-top: 30px">
+        <h2>Coins</h2>
+        <p>Here are recent coins which are recently added to the platform.</p>
+    </div>
+
+    <div class="container tableContainer">
+        <table>
+            <tr class="tableHeading">
+                <th></th>
+                <th class="tablePriceHeading">COIN STATUS</th>
+                <th class="tableMarketHeading">POSTED BY</th>
+                <th class="tableAgeHeading">PUBLISH DATE</th>
+                <th>ACTION</th>
+            </tr>
+
+
+            {% for coin in coins|slice:15 %}
+                 <tr class="dataRow">
+                    <td>
+                        <img style="border-radius: 50%" class="coinImage" src="{{ coin.token_logo_link }}" alt="Coin logo">
+                        <span class="coinName">{{ coin.token_name }}<br>
+                            <span class="coinType">${{ coin.token_symbol }}</span><br>
+                            {% if coin.presale == "Yes" %}
+                                <span class="coinLabel">PRESALE</span>
+                            {% endif %}
+
+                        </span>
+                    </td>
+                    <td class="dataTd tablePrice">
+                        {% if coin.is_coin_launched == "Yes" %}
+                            Launched
+                        {% else %}
+                            Not Launched
+                        {% endif %}
+                    </td>
+                    <td class="dataTd tableMarketCap">{{ coin.User.fullname }}</td>
+                    <td class="dataTd tableAge">{{ coin.launch_date }}</td>
+                    <td class="tableButton"><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#actionModal{{ coin.id }}">Action</button></td>
+
+
+                    <!-- Action Dialog Modal -->
+                    <div class="modal fade" id="actionModal{{ coin.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="actionModalLabel{{ coin.id }}" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="actionModalLabel">Action</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              {% if coin.coin_status == "Listed" %}
+                                <a href="#" class="modalLinkButton" data-bs-toggle="modal" data-bs-target="#unlistActionModal{{ coin.id }}">Un-list Coin</a>
+                              {% else %}
+                                  <a href="{% url 'ListCoin' coin.id %}" class="modalLinkButton">List Coin</a>
+                              {% endif %}
+                              <a href="{% url 'UpdateCoin' coin.id %}" class="modalLinkButton">Update Coin</a>
+                              <a href="#" class="modalLinkButton" data-bs-toggle="modal" data-bs-target="#delActionModal{{ coin.id }}">Delete Coin</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <!--  Un-list Action  Modal -->
+                    <div class="modal fade" id="unlistActionModal{{ coin.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="unlistActionModalLabel{{ coin.id }}" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="unlistActionModalLabel">Are you sure?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body" style="padding: 10px;background-color: white">
+                              <p>
+                                  Are you sure to un-list the coin?
+                              </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <a href="{% url 'UnlistCoin' coin.id %}" class="btn btn-danger">Yes</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  <!--  Delete Action  Modal -->
+                    <div class="modal fade" id="delActionModal{{ coin.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delActionModalLabel{{ coin.id }}" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="delActionModalLabel">Are you sure?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body" style="padding: 10px;background-color: white">
+                              <p>
+                                  Are you sure to delete the coin?
+                              </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <a href="{% url 'DeleteCoin' coin.id %}" class="btn btn-danger">Yes</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+    $(document).ready(function () {
+
+    });
+    </script>
+{% endblock %}

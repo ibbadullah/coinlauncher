@@ -1,0 +1,75 @@
+.halfContainer{
+    width: 60%;
+    margin-left: 20%;
+}
+.sectionTitleContainer h2{
+    font-size: 26px;
+    color: #333;
+}
+.sectionTitleContainer p{
+    font-size: 14px;
+    font-weight: 300;
+}
+.form-card{
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    padding: 25px;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+.form-group label{
+    font-size: 14px;
+}
+.form-card input{
+    font-size: 14px;
+}
+.form-card select{
+    font-size: 14px;
+}
+.form-card textarea{
+    font-size: 14px;
+}
+.form-card input:focus{
+    border: 1px solid #df1717;
+    box-shadow: none;
+}
+.form-card select:focus{
+    border: 1px solid #df1717;
+    box-shadow: none;
+}
+.form-card textarea:focus{
+    border: 1px solid #df1717;
+    box-shadow: none;
+}
+.requiredField{
+    font-size: 11px;
+    color: #df1717;
+}
+.btnBg{
+    background-color: #df1717;
+    color: white;
+}
+.btnBg:hover{
+    color: white;
+    opacity: 0.8;
+}
+.btnWithoutBg{
+    border: 1px solid #df1717;
+    background-color: white;
+    color: #df1717;
+}
+.btnWithoutBg:hover{
+    background-color: #df1717;
+    color: white;
+}
+
+
+@media only screen and (max-width: 900px) {
+    .halfContainer{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+}

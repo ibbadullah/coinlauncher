@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="icon/png" href="{% static 'images/logo.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/indexBase.css' %}">
+    {% block externalFiles %}{% endblock %}
+    {% block internalCSS %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+
+<div class="navBarBg">
+
+        <div class="mobileNav">
+            <a href="#" class="mobileLogoLink"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+
+            <div class="mobileSignupProfile">
+                {% if request.user.is_authenticated %}
+                    <div class="mobileProfileCircle" id="mProfileIcon">{{ request.user.fullname.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mobileMenuIcon" id="mMenuIcon">
+                <i class="fa fa-bars" id="menuOpenIcon"></i>
+            </div>
+
+            {% comment %}<div class="darkModeDiv">
+                <div>
+                    <label class="switch">
+                      <input hidden type="checkbox"/>
+                      <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>{% endcomment %}
+
+
+             <!--Profile modal for menus-->
+            <div class="profileModel" id="mMenuModal" style="display: none">
+                <i class="fa fa-times mobileDialogCloseBtn"></i>
+                <div class="modalBody">
+                    <a href="{% url 'AdminDashboard' %}" style="margin-top: 15px;text-align: center;margin-left: 0px">DASHBOARD</a>
+                    <a href="{% url 'AdminAllCoins' %}" style="margin-top: 15px;text-align: center;margin-left: 0px">COINS</a>
+                    <a href="{% url 'AdminAllVotes' %}" style="margin-top: 15px;text-align: center;margin-left: 0px">VOTES</a>
+                    <a href="{% url 'AdminAllUsers' %}" style="margin-top: 15px;text-align: center;margin-left: 0px">USERS</a>
+                </div>
+            </div>
+
+
+
+
+        <!--Profile modal for dashboard-->
+            <div class="profileModel" id="mProfileModal">
+                <div class="modalHeader">
+                    <div class="modalProfileCircle">{{ request.user.fullname.0 }}</div>
+                    <h4>{{ request.user.fullname }}</h4>
+                    <p>{{ request.user.email }}</p>
+                </div>
+                <i class="fa fa-times mobileDialogCloseBtn"></i>
+                <div class="modalBody">
+                    <a href="{% url 'AdminDashboard' %}" style="margin-top: 15px"><i class="fa fa-user"></i>&nbsp;&nbsp;Dashboard</a>
+                    <a href="{% url 'UpdateAdminProfileView' %}" style="margin-top: 15px"><i class="fa fa-edit"></i>&nbsp;&nbsp;Update Profile</a>
+                    <hr>
+                    <a href="{% url 'LogoutView' %}" style="margin-bottom: 15px"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--Desktop screen menu-->
+        <div class="navBar">
+            <a href="#" class="logoLink"><img src="{% static 'images/logo.png' %}" alt="Logo"></a>
+            <div class="menuLinks">
+                <a href="{% url 'AdminDashboard' %}">Dashboard</a>
+                <a href="{% url 'AdminAllCoins' %}">Coins</a>
+                <a href="{% url 'AdminAllVotes' %}">Votes</a>
+                <a href="{% url 'AdminAllUsers' %}">Users</a>
+            </div>
+
+
+          {% comment %}  <div class="darkModeDiv">
+                <div>
+                    <label class="switch">
+                      <input hidden type="checkbox"/>
+                      <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>{% endcomment %}
+
+
+            <div class="login-Profile">
+
+                {% if request.user.is_authenticated %}
+                    <div class="profileDiv" id="dProfileIcon">
+                        <div class="profileCircle">{{ request.user.fullname.0 }}</div>
+                        <span class="message">Hello,</span>
+                        <p>{{ request.user.fullname }}&nbsp;<i class="fa fa-angle-down"></i></p>
+
+
+                        <div class="profileModel" id="dProfileModal">
+                            <div class="modalHeader">
+                                <div class="modalProfileCircle">{{ request.user.fullname.0 }}</div>
+                                <h4>{{ request.user.fullname }}</h4>
+                                <p>{{ request.user.email }}</p>
+                            </div>
+                            <div class="modalBody">
+                                <a href="{% url 'AdminDashboard' %}" style="margin-top: 15px"><i class="fa fa-user"></i>&nbsp;&nbsp;Dashboard</a>
+                                <a href="{% url 'UpdateAdminProfileView' %}" style="margin-top: 15px"><i class="fa fa-edit"></i>&nbsp;&nbsp;Update Profile</a>
+                                <hr>
+                                <a href="{% url 'LogoutView' %}" style="margin-bottom: 15px"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--Content div-->
+    <div class="bodycontent" style="margin-bottom: 30px">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+    <!--Footer-->
+    <footer class="footerDiv mt-auto">
+        <p>&copy; {% now "Y" %} <a href="https://coinlauncher.net">coinlauncher.net</a> | Developed & designed by <a href="https://20services.com">20services.com</a></p>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/indexBase.js' %}"></script>
+    {% block js %}{% endblock %}
+
+
+</body>
+</html>
+

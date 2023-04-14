@@ -1,0 +1,533 @@
+
+h1,h2,h3,h3,h4,h5,h6,p{
+    color: #fff !important;
+}
+
+
+body{
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+    background-color: #14192e !important;
+    color: #fff !important;
+    overflow-x: hidden;
+}
+.totalCoinDiv{
+    background-color: #2d3646 !important;
+    border-color: gray!important;
+}
+.totalCoins{
+    color: white !important;
+}
+.totalCoinDiv .coinsTitle{
+    color: white !important;
+}
+table{
+    background-color: #2d3646 !important;
+    border-style: none !important;
+}
+.tableHeading{
+    background-color: #272E48 !important;
+}
+.dataRow{
+    border-top: 1px solid grey !important;
+    border-bottom: none!important;
+}
+.dataRow .btn{
+    background: none!important;
+}
+.dataRow table{
+    background: none !important;
+}
+.launchInNumbers{
+    text-decoration-color: #df1717 !important;
+}
+.dataRow:hover{
+    background-color: grey!important;
+}
+.bottomLine{
+    border-color: grey !important;
+}
+.promotedCoinsTableBg{
+    border: 2px solid #df1717;
+}
+.promotedCoinsTableBg .tableHeading{
+    color: #68ede0;
+}
+.promotedCoinsTableBg .dataRow{
+    color: #68ede0;
+}
+.darkModeToggle:checked{
+            background-color:#df1717 !important;
+            border-color: #df1717;
+    }
+
+
+/*Navbar*/
+.navBarBg{
+height: 75px;
+background-color: #1A233A;
+width: 100%;
+position: fixed;
+top: 0px;
+line-height: 75px;
+-webkit-box-shadow: 0px 10px 35px -8px rgba(0,0,0,0.4);
+-moz-box-shadow: 0px 10px 35px -8px rgba(0,0,0,0.4);
+box-shadow: 0px 10px 35px -8px rgba(0,0,0,0.4);
+
+}
+.navBarBg .signup:hover{
+    color: white !important;
+    border-color: white !important;
+}
+
+.navBar{
+width: 90%;
+margin-left: 5%;
+padding: 0px;
+
+}
+.logoLink{
+float: left;
+}
+.logoLink img{
+width: 180px;
+height: 50px;
+}
+.menuLinks{
+float: left;
+margin-left: 35px;
+}
+.menuLinks a{
+float: left;
+margin-left: 25px;
+text-decoration: none;
+color: white;
+font-size: 15px;
+font-weight: 500;
+text-transform: uppercase;
+}
+.menuLinks a:hover{
+color: #df1717;
+}
+.bestDealsMenu{
+position: relative;
+}
+.bestDeals{
+color: darkorange;
+font-size: 11px;
+position: absolute;
+bottom: -14px;
+left: 0px;
+}
+.newsletterMenu{
+position: relative;
+}
+.newsletterDot{
+border-radius: 50%;
+width: 5px;
+height: 5px;
+background: #df1717;
+display: block;
+top: 22px;
+right: -8px;
+position: absolute;
+box-shadow: green;
+
+}
+.comingSoonMenu{
+position: relative;
+}
+.comingSoon{
+color: #df1717;
+font-size: 11px;
+position: absolute;
+bottom: -14px;
+left: 0px;
+}
+
+.login-Profile{
+margin-right: 35px;
+float: right;
+}
+.login{
+background-color: #df1717;
+color: white;
+margin-right: 10px;
+font-weight: 500;
+}
+.signup{
+border: 1px solid #df1717;
+font-weight: 500;
+color: #df1717;
+}
+.login:hover{
+box-shadow: none;
+color: white;
+opacity: 0.9;
+}
+.darkModeDiv{
+float: right;
+margin-top: 5px;
+}
+
+
+/*profile div*/
+.profileDiv{
+cursor:pointer;
+margin-top: 6px;
+position: relative;
+margin-right: 20px;
+height: 60px;
+width: 250px;
+}
+.profileCircle{
+height: 30px;
+width: 30px;
+top: 15px;
+position: absolute;
+color: white;
+background-color: green;
+border-radius: 50%;
+text-align: center;
+font-weight: 500;
+font-size: 16px;
+line-height: 30px;
+text-transform: uppercase;
+display: block;
+}
+.profileDiv .message{
+float: left;
+line-height: 0px;
+top: 20px;
+position: absolute;
+left: 40px;
+font-size: 12px;
+}
+.profileDiv p{
+position: absolute;
+top: 30px;
+left: 40px;
+line-height: 0px;
+display: block;
+font-size: 15px;
+font-weight: 500;
+}
+.profileModel{
+    width: 300px;
+    position: absolute;
+    top: 60px;
+    background-color: #2d3646 !important;
+    border-radius: 5px;
+    border-top: 3px solid #df1717;
+    -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.14);
+    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.14);
+    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.14);
+    overflow: hidden;
+    display: block;
+}
+.modalHeader{
+width: 100%;
+height: 70px;
+position: relative;
+}
+
+.modalProfileCircle{
+    height: 40px;
+    width: 40px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 500;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.modalHeader h4{
+color: white;
+font-size: 15px;
+left: 70px;
+position: absolute;
+top: 15px;
+bottom: 0px;
+
+}
+.modalHeader p{
+color: white;
+font-size: 11px;
+font-weight: 400;
+left: 70px;
+position: absolute;
+top: 45px;
+}
+.modalBody{
+padding: 0px;
+}
+.modalBody a{
+display: block;
+text-decoration: none;
+color: white;
+margin-left: 20px;
+margin-top: 0px;
+margin-bottom: 0px;
+line-height: 30px;
+}
+.modalBody a:hover{
+color: #df1717;
+}
+
+/*Hiding all modals by ids*/
+#dProfileModal{
+display: none;
+}
+
+#mLoginSignupModal{
+display: none;
+}
+#mProfileModal{
+    display: none;
+}
+/*hiding mobile navbar*/
+.mobileNav{
+    display: none;
+}
+
+
+
+
+
+/*Mobile screen*/
+@media only screen and (max-width: 1250px){
+.navBar{
+    display: none;
+}
+.mobileNav{
+    width: 90%;
+    margin-left: 5%;
+    padding: 0px;
+    display: block;
+}
+.mobileLogoLink{
+    float: left;
+}
+.mobileLogoLink img{
+    width: 120px;
+    height: 30px;
+}
+.mobileSignupProfile{
+    float: right;
+}
+.mobileProfileCircle{
+    height: 40px;
+    width: 40px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 500;
+    border-radius: 50%;
+    float: right;
+    margin-top: 17.5px;
+    cursor: pointer;
+    display: inline-block;
+}
+.userIconDev{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #999999;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 22.5px;
+    color: #999999;
+    cursor: pointer;
+}
+.mobileMenuIcon{
+    float: right;
+    margin-right: 20px;
+    color: #999999;
+    cursor: pointer;
+
+}
+
+.darkModeDiv{
+    float: right;
+    margin-right: 20px;
+}
+.profileModel{
+    width: 90%;
+    left: 5%;
+    border-top:none;
+    top: 10px;
+
+}
+.mobileDialogCloseBtn{
+    position: absolute!important;
+    top: 10px!important;
+    right: 10px!important;
+    color: grey!important;
+}
+.modalHeader p{
+    top: 7px;
+}
+
+
+/*footer*/
+.footerDiv{
+    height: auto!important;
+    width: 100%;
+    background-color: #1A233A;
+    line-height: 25px !important;
+    border-top: 1px solid gainsboro;
+    padding-top: 15px!important;
+    padding-bottom: 8px!important;
+}
+.footerDiv p{
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+}
+
+/* Footer and content area */
+
+.footerDiv{
+height: 80px;
+width: 100%;
+background-color: #14192e;
+line-height: 80px;
+border-top: 1px solid black;
+}
+.footerDiv p{
+color: white;
+font-size: 20px;
+font-weight: 300;
+margin-left: 40px;
+margin-right: 40px;
+}
+.footerDiv p a{
+text-decoration: none;
+color: white;
+}
+
+
+
+/*Stuff for other admin and account index*/
+.modal-content{
+        overflow: hidden!important;
+    }
+    .modal-body{
+        padding: 0px;
+    }
+    .modalLinkButton{
+        display: block;
+        text-decoration: none;
+        color: #333;
+        padding: 8px 8px 8px 16px;
+        width: 100%;
+    }
+    .modalLinkButton:hover{
+        background-color: #f0f0f0;
+        color: #df1717;
+    }
+
+
+/*newsletter page stuff*/
+.formDiv{
+    background-color: #2d3646 !important;
+    color: white !important;
+    border-color: grey !important;
+}
+
+.formDiv input{
+    background: none!important;
+}
+.formDiv input:focus{
+    color: white !important;
+}
+
+
+/* Shill page stuff */
+.containerWin{
+    background-color: #2d3646 !important;
+    color: white !important;
+    border-color: grey !important;
+}
+.leftCol{
+    border-color: grey !important;
+}
+
+
+/* User dashboard */
+.coinCards{
+    background-color: #2d3646 !important;
+    color: white !important;
+    border-color: grey !important;
+}
+
+.coinCards table{
+    background: none !important;
+}
+.coinLinkOne{
+    color: white !important;
+}
+.coinLinkTwo{
+    color: white !important;
+}
+.coinBadge{
+    background: none !important;
+}
+.approvalMessaageDiv{
+    background: none!important;
+}
+
+/* Add Coin */
+.form-card{
+    background-color: #2d3646 !important;
+    color: white !important;
+    border-color: grey !important;
+}
+.form-card input{
+    background: none !important;
+    color: white !important;
+}
+
+.form-card select{
+    background: none !important;
+    color: white !important;
+}
+.form-card textarea{
+    background: none !important;
+    color: white !important;
+}
+
+
+/* Details coin page */
+.cardShadow{
+    background-color: #2d3646 !important;
+    color: white !important;
+    border-color: grey !important;
+}
+#coinLink{
+    background-color: #2d3646 !important;
+    color: white !important;
+}
+.cardShadow textarea{
+    background: none !important;
+    color: white !important;
+}
+.votedDiv{
+    background-color: #2d3646 !important;
+    color: white !important;
+    border-color: grey !important;
+}
+.animatedDiv{
+    background-color: #df1717 !important;
+    border-color: white;
+}
+.websiteP{
+    color: white !important;
+}
